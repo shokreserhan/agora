@@ -19,7 +19,7 @@ export class Inventory {
 
     }
     addItem = (name , price , quantity) => {
-        if(name.length === 0){
+        if(name.length === 0 || parseInt(price) < 1 || parseInt(quantity) < 1){
             return
         }
         let item = this.Items.filter(item => item.name === name)
