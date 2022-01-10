@@ -1,25 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
+import Item from './components/Item';
+import Inventory from './components/Inventory';
+import { observer } from 'mobx-react';
+import { observe } from 'mobx';
 
-function App() {
+function App(props) {
+  let market = props.Market
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Inventory Market = {market}/>
+      {market.Items.map((item,index) => 
+      <Item item = {item} key={index} Market = {market}/>
+      )}
     </div>
   );
 }
 
-export default App;
+export default observer(App)
