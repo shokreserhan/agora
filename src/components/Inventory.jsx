@@ -17,7 +17,9 @@ const Inventory = observer((props) => {
     }
 
     return (
+
         <div>
+            <h1>Here... Your money maker $$ ;D</h1>
             <label>Name: </label><input className={'name'} onChange={handleInput} placeholder='Name...' value={Inputs.name} type={'text'}/>
             <label>price: </label><input className={'price'} onChange={handleInput} placeholder='Price...' value={Inputs.price} type={'number'} pattern="/^\d+$/"/>
             <label>quantity: </label><input className={'quantity'} onChange={handleInput} placeholder='Quantity...' value={Inputs.quantity} type={'number'} pattern="/^[0-9\b]+$/"/>
