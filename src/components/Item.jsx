@@ -1,4 +1,4 @@
-import { observer } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import React, { Component } from 'react';
 
 
@@ -19,4 +19,4 @@ class Item extends Component {
     }
 }
 
-export default observer(Item)
+export default inject("Market")(observer(Item))

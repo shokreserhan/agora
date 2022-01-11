@@ -1,8 +1,8 @@
 import { observe } from 'mobx';
-import { observer } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import React, { Component, useState } from 'react';
 
-const Inventory = observer((props) => {
+const Inventory = inject("Market")(observer((props) => {
     const [Inputs , setInputs] = useState({ name: '', price: 0, quantity: 1 })
 
     const handleInput = e => {
@@ -26,6 +26,6 @@ const Inventory = observer((props) => {
             <button className='Add-Button' onClick={addItem}>Add</button>
         </div>
     );
-})
+}))
 
 export default Inventory

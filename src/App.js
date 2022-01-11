@@ -2,19 +2,19 @@ import logo from './logo.svg';
 import './App.css';
 import Item from './components/Item';
 import Inventory from './components/Inventory';
-import { observer } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import { observe } from 'mobx';
 
-function App(props) {
+const App = inject("Market")(observer((props) => {
   let market = props.Market
   return (
     <div className="App">
-      <Inventory Market = {market}/>
+      <Inventory/>
       {market.Items.map((item,index) => 
-      <Item item = {item} key={index} Market = {market}/>
+      <Item item = {item} key={index}/>
       )}
     </div>
   );
-}
+}))
 
-export default observer(App)
+export default App

@@ -1,4 +1,4 @@
-import { observable, action, makeObservable, observe } from 'mobx'
+import { observable, action, makeObservable, observe, computed } from 'mobx'
 import { observer } from 'mobx-react'
 // import Item from '../components/Item'
 import { Item } from './Item';
@@ -7,6 +7,7 @@ export class Inventory {
     constructor() {
         this.Items = []
         this.length = 0
+
         // your code here
         makeObservable(this,{
             Items: observable,
@@ -14,7 +15,8 @@ export class Inventory {
             addItem: action,
             changePrice: action,
             buyItem: action,
-            deleteItem: action
+            deleteItem: action,
+            numItems: computed
         })
 
     }
@@ -26,9 +28,11 @@ export class Inventory {
         console.log(item);
         if(this.Items.find(item => item.name === name) === undefined){
             this.Items.push(new Item(name , price , quantity))
+            this.length++
         }else{
             let item = this.Items.find(item => item.name === name)
             item.quantity = parseInt(item.quantity) + parseInt(quantity)
+            this.length--
         }
     }
     changePrice = (itemName , newPrice) => {
@@ -52,6 +56,10 @@ export class Inventory {
         if(item !== undefined && item.quantity === 0){
             this.deleteItem(itemName)
         }
+    }
+
+    get numItems(){
+        return this.length
     }
 }
 
